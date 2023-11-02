@@ -1,0 +1,232 @@
+# Productivity tools
+
+En términos generales, no se recomienda el uso de interfaces gráficas para proyectos de DS. En este curso aprenderemos alternativas a las GUIS para organizar archivos y preparar documentos.
+
+Tres principios generales:
+
+1.  Ser sistemático a la hora de organizar el sistema de archivos.
+
+2.  Automatizar cuando sea posible.
+
+3.  Minimizar el uso del mouse.
+
+Esto hace posible tres resultados:
+
+1.  minimizar el tiempo a la hora de buscar algo.
+
+2.  si se repite algo de manera constante, probablemente hay una forma de automatizarlos.
+
+3.  Cuando los dedos se apartan del teclado, se pierde productividad.
+
+-   Unix Shell nos permitirá organizar archivos y carpetas en el sistema.
+
+-   Git permitirá controlar y llevar registro de los cambios entre versiones de scripts y reportes.
+
+-   Rmarkdown permitiré incorporar texto y código en un único documento.
+
+-   Knit permite aumentar las funcionalidades de Rmakdown, para escribir reportes reproducibles y estéticos.
+
+-   Todo lo anterior se puede hacer con Rstudio.
+
+## GitHub
+
+Las acciones principales en Git son:
+
+\- pull: arrastra cambios desde el repositorio remoto, en este caso de GitHub.
+
+\- add: agrega archivos.
+
+-   commit: hace cambios en el repositorio local.
+
+\- push: empuja cambios al repositorio remoto.
+
+![](Captura%20de%20pantalla%202022-06-23%20143929.png)
+
+Antes de empezar a trabajar en proyectos colaborativos, la primera cosa que usualmente hacemos es pull los cambios desde el repo remoto. Sin embargo, aquí vamos a empezar con un repositorio vacío y sabemos que no hay cambios para hacer pull.
+
+En Rstudio el estatus de los archivos es representado por los ímbolos en color. Un cuadrado amarillo significa que Git no sabe nada acerca del archivo.
+
+Para sincronizar los archivos con GitHub, necesitamos agregar (add) el archivo y posteriormente commit los cambios al repositorio local, luego, push los datos al repositorio de github. En este momento el archivo tan sólo está en el directorio local.
+
+Para agregar (add) el archivo, tan solo hacemos click en la casilla de "Staged", en la pestaña Git de Rstudio.
+
+No tenemos que agregar todos, sólo los únicos que queremos mantener sincronizados o compartidos.
+
+Para commit, sólo tenemos que presionar el botón commit en la misma pestaña; se abrirá un cuadro de diálogo en el que se solicita un comentario descriptivo de la actualización del script y y se señala en color verde la actualización realizada.
+
+Posteriormente, después de cerrar el diálogo emergente, en la esquina superior derecha se podrá hacer el push.
+
+## UNIX básico.
+
+Unix permite administrar el sistema de archivos desde una terminal mediante comandos tales como mv y rm.
+
+Los sistemas de archivos se organizan de manera jerárquica, como árboles, así:
+
+![](Arbol%20de%20archivos.png)
+
+Se puede navegar a través de estos archivos con comandos en la consola.
+
++------------------------+------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+| Comando                | Descripción                                                                                          | Ejemplo                                                                                                        |
++========================+======================================================================================================+================================================================================================================+
+| ls                     | Lista el contenido de un directorio                                                                  |                                                                                                                |
++------------------------+------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+| mkdir dir              | Crea un directorio                                                                                   | mkdir proyectos                                                                                                |
+|                        |                                                                                                      |                                                                                                                |
+|                        |                                                                                                      | mkdir docs                                                                                                     |
++------------------------+------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+| rmdir dir              | Remueve un directorio (el directorio debe estar vacío, de lo contrario se usa rm)                    | rmdir proyectos                                                                                                |
++------------------------+------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+| cd dir                 | Cambia el directorio                                                                                 | cd /proyectos (mueve al directorio proyectos)                                                                  |
+|                        |                                                                                                      |                                                                                                                |
+|                        |                                                                                                      | cd projects (mueve al directorio proyectos, asumiendo que este ya está en el directorio home)                  |
++------------------------+------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+| cd ..                  | Se mueve hacia arriba en el arbol de directorios                                                     | cd ../.. (Se mueve hacia arriba dos directrios desde el actual)                                                |
++------------------------+------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+| cd \~                  | va al directorio padre                                                                               |                                                                                                                |
++------------------------+------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+| cd -                   | Se cambia al directorio anterior (el que acabaste de visitar, como el botón prev del control remoto) |                                                                                                                |
++------------------------+------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+| pwd                    | imprime el directorio de trabajo actual - present work directory                                     |                                                                                                                |
++------------------------+------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+| tecla Tab              | Autocompleta                                                                                         |                                                                                                                |
++------------------------+------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+| mv *archivo1 archivo2* | Mueve o renombra archivos (permanentemente y sin ningún mensaje de advertencia)                      | mv \~/docs/resumes/cv.tex \~/docs/reports/ (mueve el archivo cv.tex de la carpeta resumes a la carpeta reports |
+|                        |                                                                                                      |                                                                                                                |
+|                        |                                                                                                      | mv cv.tex resume. tex (renombra el archivo cv.tex a resume.tex)                                                |
++------------------------+------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+| cp *file1 file2*       | Copia archivo 1 a archivo 2                                                                          | cp \~ \~/docs/reports/ (hace una copia del archivocv.tex desde la carpeta resumen a la carpeta reports         |
++------------------------+------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+| rm *file*              | Elimina un archivo                                                                                   | rm\~/docs/resumes/cv.tex (elimina el archivo cv.tex)                                                           |
+|                        |                                                                                                      |                                                                                                                |
+|                        | Esto es permanente. No se puede recuperar desde la papelera                                          |                                                                                                                |
++------------------------+------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+| less *archivo*         | Muestra el archivo                                                                                   |                                                                                                                |
++------------------------+------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+| rm -r *dir*            | Remueve recursivamente todos los folders en un directorio, y el directorio en sí mismo.              |                                                                                                                |
++------------------------+------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+| ls -a                  | Lista todos los contenidos en el directorio, incluídos los archivos ocultos.                         |                                                                                                                |
++------------------------+------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+| ls -l                  | Lista todos los contenidos en forma larga (incluyendo permisos, tamaño y fecha)                      |                                                                                                                |
++------------------------+------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+| ls -t                  | Lista todos los contenidos en orden cronológico                                                      |                                                                                                                |
++------------------------+------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+| touch archivo          | Crea un nuevo archivo en el directorio                                                               |                                                                                                                |
++------------------------+------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+| help                   | Muestra el manual para un comando                                                                    |                                                                                                                |
++------------------------+------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+| comando 1 comando 2    | transmite el resultado del primer comando al segundo                                                 |                                                                                                                |
++------------------------+------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+| \*                     | Permite hacer una operación sobre varios archivos con una propiedad especíifica                      | ls \*.html (muestra todos los archivos que terminan en .html)                                                  |
++------------------------+------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+| ?(cualquier caracter)  | Asume el lugar de cualcuier caracter                                                                 | rm file.???.html (remueve todos los archivos cuyos nombres sigen el patrón, por ejemplo: file-001.html         |
++------------------------+------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+| \$var                  | \$ identifica una variable                                                                           |                                                                                                                |
++------------------------+------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+| export val=value       | Cambia el varlo de la variable val                                                                   |                                                                                                                |
++------------------------+------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+| file                   | Abre un archivo o programa                                                                           | open Report.Rmd                                                                                                |
++------------------------+------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+
+### Rutas relativas y absolutas
+
+Una ruta absoluta especifica la localización de una archivo desde el directorio raíz. Es independiente del directorio actual. Debe iniciar con / o \~. Por ejemplo:
+
+/Users/Yudy/Documents/Proyectos R/Cursos/DataScience
+
+Una ruta relativa, es relativa al directorio de trabajo actual.
+
+### Organizándose con UNIX
+
+Unix es el sistema operativo de elección en ciencia de datos. Básicamente necesitamos aprender una manera de pensar que facilite la organización de archivos sin usar el mouse, al tiempo que se opera con los comandos.
+
+### El sistema de archivos
+
+El sistema de archivos es el conjunto de archivos, directorio y programas en el computador.
+
+Los folders y programas también son archivos.
+
+Este sistema de archivos está organizado como una serie de folders anidados, que contienen más folders, archivos y programas.
+
+Los folders o carpetas son directorios.
+
+las carpetas que están dentro de carpetas se les conoce como subdirectorios.
+
+Cada sistema tiene un directorio raiz (root), desde el cual se accede a todos los directorios de este.
+
+### El directorio de trabajo
+
+En Unix el concepto de ubicación actual es indispensable. Esta ubicación actual es el directorio de trabajo.
+
+Cada terminal que se abre tiene un directorio de trabajo asociado con la misma.
+
+Para saber cuál es el directorio de trabajo se usa el comando pwd
+
+### Prepararse para un proyecto de Data Science
+
+Se recomienda empezar un directorio, en el directorio de trabajo, en el que se guarden todos los proyectos. Este puede tener el nombre de "proyectos".
+
+Luego, se puede hacer un directorio para cada proyecto, con un nombre significativo.
+
+Dentro del nombre del proyecto deberían ir dos subdirectorio, que tengan los datos crudos y los datos intermedios.
+
+A los datos crudos se les puede poner el nombre de "data" y a los datos intermedios "rda" (Rdata).
+
+Para crear un nuevo proyecto, entonces vamos a ir al directorio raiz (cd \~) y desde allí vamos a crear una carpeta para los proyectos (mkdir \~/Proyectos), y luego, dentro de este, vamos a crear otro directorio que se llame como el proyecto: Murders (mkdir \~/Proyectos/Murders).
+
+Luego desde ellí vamos a crear dos carpetas, data y rda (\~mkdir \~/Proyectos/Murders/data y los mismo para rda).
+
+Desde ese directorio podemos crear nuestro proyecto R. Una vez en el proyecto R, obtenemos un archivo y lo guardamos en la carpeta data (datos crudos) Luego preparamos toda la base de datos y los resultados de esto los guardamos en la carpeta rda (datos intermedios) Luego creamos plots y lo guardamos en la carpeta img. Para cada uno de estos pasos hicimos un script diferente. Todos los scripts van en el directorio de trabajo. Se crea un archivo readme.txt en el que se explique para qué sirve cada archivo rscript.
+
+## Reportes reproducibles
+
+Con Rmarkdown y Knitr podemos combinar código y texto en el mismo documento y las figuras y tablas producidas por el código son agregadas autmáticamente al documento.
+
+### Rmarkdown
+
+es un formato para lo que se llama documentos de programación alfabetizados. Está basado en markdown, un lenguaje ampliamente usado para generar páginas html. A diferencia de word, que es WYSIWYG, en Rmarkdown es necesario compilar el documento en el reporte final. Knitr es lo que compila ese documento.
+
+## Git y GitHub
+
+Hay tres razones para usar git: 1. Control de versiones, lo cual nos permite llevar control de cambios, probar con nuevas ramas de código, y fusionar las ramas si es útil. 2. Colaboración. Una vez se configura un repositorio central, podemos tener a muchas personas colaborando con el código y mantener las versiones sincronizadas. Github sirve como servicio gratuito para repositorios centrales; una vez estos se publican muchas personas pueden sugerir cambios y fácilmente se pueden aceptar o denegar. 3. Compartir.
+
+### Areas de trabajo
+
+Para compartir efectivamente el trabajo, git usa cuatro áreas: 1. Working directory. 2. Staging area. 3. Local repository. 4. Upstream repository
+
+Podemos clonar un repositorio existente o crear un nuevo.
+
+### Clonar un repositorio
+
+Clonar significa copiar la estructura git compleata, lo cual significa que agregaremos los archivos y los directorio a cada una de las tres áreas de trabajo locales. Cuando clonas, estas tres áreas de trabajo son exactamente las mismas. Para clonar, crear un nuevo directorio (mkdir ejemplo-git) luego estableces ese directorio como wd (cd ejemplo-git)
+
+luego usar el **comando git clone** compañado de la url del repositorio. (git clone <https://github.com/rairizarry/murders.git>)
+
+Cuando editamos archivos usando un editor como Rstudio, simplemente estamos trabajando en el área de Working Directory Si queremos saber cómo están relacionados los archivos en las áreas, usamos el comando **git status**, el cual nos dirá si la rama está actualizada con el repositorio de origen.
+
+No tenemos que sincronizar todos los cambios, sino lo más importantes. Cuando estemos listos para preparar un cambio, podemos agregarlos a la Staging Area, con el comando **git add**. Esto se hace, agregándole el nombre del archivo que queremos agregar. por ejemplo: git add new-file.txt. Si después de hacer esto revisamos el status (git status), nos encontraremos con que hay cambios pendientes en la staged area. Ahora, cada cambio que hagamos en el archivo new-file.txt serán adicionados al repositorio cuando hagamos commit.
+
+Para hacer commit, usamos el comando **git commit -m** acompañado de un comentario. (git commit -m "Agregando un nuevo archivo"). Ahora el archivo está agregado en el área local repository
+
+Se puede saltar la parte de add, si agregamos el nombre de archivo al comando commit (git commit -m "cambio menor al archivo" new-file.txt)
+
+Podemos llevar un registro de todos los cambios que se han hecho con el comando **git log** (git log)
+
+Para enviar los cambios al repositorio central (área upstream repository), tendremos que usar el comando **git push** Es necesario tener en cuenta que, para hacer esto, debemos tener el permiso del administrador del repositorio, pues, de lo contrario, git arrojará un error.
+
+Si queremos sincronizar nuevos cambios, cuando somos los dueños del repositorio upstream, simplemente usamos el comando **git fetch** (git fetch) Esto lo enviará al repositorio local. Si queremos que vaya al area staged y al working directory, usamos el comando **git merge** (git merge). Si queremos hacer todo esto en un sólo comando usamos **git pull** (git pull)
+
+### Inicializando un repositorio GitHub
+
+Otra aproximación es inicializar desde nuestro propio pc, en vez de clonar. Para eso, vamos a convertir el proyecto Murders en un repositorio local y upstream.
+
+1.  Creamos un repositorio nuevo en github, con el nombre del directorio en nuestro sistema local.
+2.  Copiamos el enlace del repositorio (este lo utilizaremos en nuestro último paso).
+3.  Con lo anterior ya tenemos el upstream, ahora vamos a crear el local. Nos movemos al directorio que contiene nuestro proyecto (cd Murders). Ese es el directorio de nuestro proyecto, pero Git no sabe nada de él.
+4.  Inicializamos el repositorio dentro de esta carpeta, usando el comando git init (git init). Los archivos están allí en nuestro directorio de trabajo, pero no en ningún otro lado, no está staged ni commited.
+5.  Empezar a mover archivos a a nuestro repositorio local. Para eso debemos indicarle a Git qué será conectado al repositorio. Por ejemplo, agreguemos el archivo readme (Staged). Para esto, usamos el comando git add acompañado del nombre del archivo (git add README.txt)
+6.  luego hacemos el git commit (git commit -m "Primer commit. Agrego README.txt para iniciar")
+7.  Ya estamos listo para hacer convertir el repositorio local en upstream. Ahora sólo tenemos el archivo README en nuestro repositorio local y es hora de enviarlo al upstream. Para eso, usaremos el comando **git remote add origin** más la url del repositorio (git remote add origin <https://github.com/carloshvelez/Murders.git> )
+8.  Finalmente, usamos el comando git push (git push).
+
+Todo esto se puede hacer desde la gui de RStudio
